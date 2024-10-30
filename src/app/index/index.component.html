@@ -1,0 +1,36 @@
+<div class="container">
+
+
+  <div *ngIf="!racaSelecionada">
+    <h2>Lista de Raças de Cachorro</h2>
+
+
+    <!-- Campo para filtrar as raças -->
+    <input type="text" [(ngModel)]="filtro" (ngModelChange)="filtrarRacas()" placeholder="Filtrar raças..." />
+    <button (click)="filtrarRacas()">Filtrar</button>
+
+    <div class="racas-container">
+      <div class="raca-card" *ngFor="let raca of racasFiltradas">
+        <a [routerLink]="['/fotos', raca]">{{ raca }}</a>
+
+      </div>
+    </div>
+
+    <!-- Botão para abrir raça aleatória -->
+    <button (click)="abrirRacaAleatoria()">Raça Aleatória</button>
+  </div>
+
+  <div *ngIf="racaSelecionada">
+    <h1>{{ racaSelecionada }}</h1>
+
+
+    <h2>Subraças</h2>
+    <ul>
+      <li *ngFor="let subraca of subracas">{{ subraca }}</li>
+    </ul>
+
+    <!-- Botão voltar -->
+    <button (click)="voltar()">Voltar</button>
+  </div>
+</div>
+
